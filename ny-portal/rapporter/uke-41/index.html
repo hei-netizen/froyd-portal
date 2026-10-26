@@ -234,48 +234,7 @@ header .logos img:not(.tb){height:15px;opacity:.7}
 .band .meta b{color:#fff;font-weight:600}
 .band .pulse{background:#7CF0B5}
 @media (max-width:640px){.pnav a.on{color:var(--brand)}.band{padding:26px 20px 22px;border-radius:18px}header .logos .tb{height:24px}}
-
-@view-transition{navigation:auto}
-::view-transition-old(root),::view-transition-new(root){animation-duration:.18s}
-html{-webkit-tap-highlight-color:transparent}
-a,button,label,input,textarea{touch-action:manipulation}
-button,.copy,.btn,.tile{transition:transform .12s ease}
-button:active,.copy:active,.btn:active,.tile:active{transform:scale(.97)}
-.pnav a{position:relative}
-.pnav .badge{position:absolute;top:2px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#E5484D;color:#fff;font:700 11px/18px Geist,sans-serif;text-align:center}
-.pnav .badge[hidden]{display:none}
-@media (min-width:641px){.pnav .badge{position:static;display:inline-block;margin-left:6px;vertical-align:1px}}
-.installer{display:none}
-.ark-bak{position:fixed;inset:0;background:rgba(7,24,18,.38);z-index:60;opacity:0;transition:opacity .2s}
-.ark-bak.vis{opacity:1}
-.ark{position:fixed;left:0;right:0;bottom:0;z-index:61;background:var(--paper);border-radius:20px 20px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(100%);transition:transform .26s cubic-bezier(.2,.8,.2,1);max-height:85vh;overflow:auto}
-.ark.vis{transform:none}
-.ark .grip{width:38px;height:5px;border-radius:999px;background:var(--line);margin:0 auto 14px}
-.ark h3{margin:0 0 4px;font-size:18px}
-.ark .ad-endre{padding:10px 0 0!important}
-.ark textarea{min-height:120px;font-size:16px}
-.ark .ad-endre button{width:100%;padding:14px;font-size:16px}
-.ark ol{margin:8px 0 0;padding-left:20px;font-size:16px;line-height:1.6}
-@media (prefers-reduced-motion:reduce){.ark,.ark-bak{transition:none}::view-transition-old(root),::view-transition-new(root){animation:none}}
-@media (max-width:640px){
-  .installer{display:flex;align-items:center;gap:12px;margin-top:16px;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;font:600 15px Geist,sans-serif;color:var(--ink);cursor:pointer}
-  .installer img{width:40px;height:40px;border-radius:10px}
-  .wiz-nav{position:sticky;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:5;background:var(--paper);margin:24px -22px -18px;padding:12px 22px;border-radius:0 0 var(--r) var(--r)}
-  .wiz-nav .btn{flex:1}
-  input,textarea,select{font-size:16px!important}
-}
-@media (display-mode:standalone){
-  header{padding-top:env(safe-area-inset-top,0px)}
-  footer,.installer{display:none!important}
-}
 </style>
-<link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#FFFFFF">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Frøyd">
-<link rel="apple-touch-icon" href="/app/ikon-180.png">
 <style>
 .logginn{max-width:440px;margin:28px 0}.logginn input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line,#ddd);border-radius:10px;margin:10px 0 12px;background:var(--paper,#fff);color:inherit}
 .logginn button{font:inherit;font-weight:600;font-size:15px;background:var(--ink,#11271F);color:#fff;border:0;border-radius:999px;padding:12px 24px;cursor:pointer;min-height:44px}.logginn .liten{color:var(--muted);font-size:14px;margin:10px 0 0}
