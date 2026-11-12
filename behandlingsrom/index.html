@@ -133,6 +133,8 @@ h1,h2,h3,h4{font-family:var(--mont);font-weight:800;line-height:1.08;letter-spac
 .field .flag{padding:0 10px;font-size:1.05rem;border-right:1px solid var(--line);align-self:stretch;display:flex;align-items:center}
 .field input{flex:1;width:100%;padding:11px 13px;border:0;background:transparent;font-family:var(--mont);font-size:0.95rem;color:var(--ink)}
 .field input:focus{outline:none}
+.field input[type=file]{padding:10px 13px;font-size:0.85rem;cursor:pointer}
+.field .hint{display:block;font-size:0.72rem;color:var(--muted);margin-top:4px}
 .formcard .cta{width:100%;margin-top:6px;padding:14px 32px}
 .fmsg{display:none;background:var(--clay-tint);border:1px solid var(--clay-soft);color:#7A4433;padding:13px 15px;border-radius:12px;font-size:0.9rem;margin-bottom:14px;font-weight:600}
 .formcard .fine{display:block;font-size:0.74rem;color:var(--muted);margin-top:11px;text-align:center}
@@ -326,8 +328,8 @@ h1,h2,h3,h4{font-family:var(--mont);font-weight:800;line-height:1.08;letter-spac
       <div class="hero-form">
         <div class="formcard">
           <div class="fhead">
-            <b>Book en uforpliktende visning</b>
-            <span>Fortell litt om deg, s&aring; tar vi kontakt og avtaler en visning av rommet.</span>
+            <b>S&oslash;k p&aring; rommet</b>
+            <span>Send en kort s&oslash;knad og CV, s&aring; tar vi kontakt og avtaler en visning av rommet.</span>
           </div>
           <form id="leadForm" novalidate>
             <div class="field">
@@ -351,10 +353,20 @@ h1,h2,h3,h4{font-family:var(--mont);font-weight:800;line-height:1.08;letter-spac
               </select></div>
             </div>
             <div class="field">
-              <label for="r-ig">Instagram eller nettside <span class="opt">(valgfritt)</span></label>
-              <div class="inp"><input type="text" id="r-ig" name="instagram" placeholder="@dittnavn eller lenke"></div>
+              <label for="r-melding">S&oslash;knad <span class="req">*</span></label>
+              <div class="inp"><textarea id="r-melding" name="melding" rows="5" placeholder="Fortell kort om deg: erfaring, hvilke behandlinger du tilbyr, om du har egne kunder i dag og n&aring;r du kan starte." required></textarea></div>
             </div>
-            <button type="submit" class="cta" id="leadBtn"><span class="t">Book visning<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Uforpliktende &middot; tar 1 minutt</span></button>
+            <div class="field">
+              <label for="r-cv">CV <span class="req">*</span></label>
+              <div class="inp"><input type="file" id="r-cv" name="cv" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.heic" required></div>
+              <span class="hint">PDF, Word eller bilde, maks 5 MB</span>
+            </div>
+            <div class="field">
+              <label for="r-ig">Instagram eller nettside <span class="req">*</span></label>
+              <div class="inp"><input type="text" id="r-ig" name="instagram" placeholder="@dittnavn eller lenke" required></div>
+            </div>
+            <div class="fmsg" id="fmsg"></div>
+            <button type="submit" class="cta" id="leadBtn"><span class="t">Send s&oslash;knad<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Uforpliktende &middot; tar 2 minutter</span></button>
           </form>
           <span class="fine">Vi bruker opplysningene kun til &aring; kontakte deg om rommet.</span>
         </div>
@@ -425,7 +437,7 @@ h1,h2,h3,h4{font-family:var(--mont);font-weight:800;line-height:1.08;letter-spac
       <span class="eyebrow">&mdash; Ett ledig rom &mdash;</span>
       <h2 class="h-lg">Din egen salong, uten &aring; bygge den fra bunnen</h2>
       <p>Du tar med kompetansen og kundene dine. Rommet, klinikken, kundene v&aring;re og beliggenheten p&aring; Nordstrand er p&aring; plass.</p>
-      <div style="margin-top:26px"><a href="#top" class="cta lg jump"><span class="t">Book en visning<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Uforpliktende</span></a></div>
+      <div style="margin-top:26px"><a href="#top" class="cta lg jump"><span class="t">Send s&oslash;knad<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Uforpliktende</span></a></div>
       <p class="micro">Leie og vilk&aring;r avtaler vi n&aring;r du er p&aring; visning</p>
     </div>
   </div>
@@ -459,11 +471,11 @@ h1,h2,h3,h4{font-family:var(--mont);font-weight:800;line-height:1.08;letter-spac
       <h2 class="h-lg" style="margin-top:12px">Fra skjema til eget rom</h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><span class="n">1</span><h3>Send inn skjemaet</h3><p>Fortell hva du jobber med, og legg gjerne ved Instagram eller nettside.</p></div>
+      <div class="step reveal"><span class="n">1</span><h3>Send s&oslash;knad og CV</h3><p>Fortell kort om deg og legg ved CV. Ta med Instagram eller nettside, s&aring; vi ser arbeidet ditt.</p></div>
       <div class="step reveal"><span class="n">2</span><h3>Kom p&aring; visning</h3><p>Vi viser deg rommet og klinikken, og tar en prat om hvordan du jobber.</p></div>
       <div class="step reveal"><span class="n">3</span><h3>Avtal og flytt inn</h3><p>Passer det for begge, blir vi enige om leie og vilk&aring;r, og du kan starte.</p></div>
     </div>
-    <div style="margin-top:34px;text-align:center" class="reveal"><a href="#top" class="cta jump"><span class="t">Book visning<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Uforpliktende &middot; tar 1 minutt</span></a></div>
+    <div style="margin-top:34px;text-align:center" class="reveal"><a href="#top" class="cta jump"><span class="t">Send s&oslash;knad<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Uforpliktende &middot; tar 2 minutter</span></a></div>
   </div>
 </section>
 
@@ -493,7 +505,7 @@ h1,h2,h3,h4{font-family:var(--mont);font-weight:800;line-height:1.08;letter-spac
         <span class="eyebrow">Her finner du oss</span>
         <h2 class="h-lg" style="margin:12px 0 12px">Nordstrandveien 32, Oslo</h2>
         <p class="lede">Kom innom og se rommet. Send skjemaet, s&aring; avtaler vi et tidspunkt.</p>
-        <div style="margin-top:24px"><a href="#top" class="cta jump"><span class="t">Book visning<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Uforpliktende</span></a></div>
+        <div style="margin-top:24px"><a href="#top" class="cta jump"><span class="t">Send s&oslash;knad<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Uforpliktende</span></a></div>
       </div>
       <div class="locard reveal">
         <div class="mapimg"><img src="img/map.jpg" alt="Kart &mdash; Fr&oslash;yd, Nordstrandveien 32, Oslo"></div>
@@ -523,22 +535,30 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 
-/* Søknad → egen Make-hook (søknader behandlingsrom). urlencoded + sendBeacon. */
+/* Søknad → egen Make-hook (søknader behandlingsrom). multipart (FormData) fordi CV-en sendes som fil; Make legger den ved e-posten. */
 var MAKE_WEBHOOK_URL='https://hook.eu1.make.com/e155pjpo43d7ppqlyxn4qfj8gj67yxgv';
+var CV_MAX=5*1024*1024;
 function normPhone(p){var d=(p||'').replace(/[^0-9+]/g,'');if(/^[49][0-9]{7}$/.test(d))return '+47'+d;if(/^0047/.test(d))return '+47'+d.slice(4);return d;}
+function fmsg(t){var m=document.getElementById('fmsg');m.textContent=t;m.style.display=t?'block':'none';}
 document.getElementById('leadForm').addEventListener('submit',function(e){
   e.preventDefault();
-  var f=e.target;
-  if(!f.navn.value.trim()||!f.telefon.value.trim()||!f.epost.value.trim()){f.reportValidity();return;}
+  var f=e.target;fmsg('');
+  if(!f.navn.value.trim()||!f.telefon.value.trim()||!f.epost.value.trim()||!f.melding.value.trim()||!f.instagram.value.trim()||!f.cv.files.length){f.reportValidity();return;}
+  var cv=f.cv.files[0];
+  if(cv.size>CV_MAX){fmsg('CV-en er større enn 5 MB. Lagre den som PDF eller et mindre bilde og prøv igjen.');return;}
   var btn=document.getElementById('leadBtn');btn.disabled=true;btn.style.opacity='.7';
   var params=new URLSearchParams(window.location.search);
-  var data={navn:f.navn.value.trim(),telefon:normPhone(f.telefon.value),epost:f.epost.value.trim(),fagfelt:f.fagfelt.value,instagram:f.instagram.value.trim(),melding:'',kilde:'froyd.arcads.no/behandlingsrom',side_url:window.location.href,fbclid:params.get('fbclid')||''};
-  var body=new URLSearchParams();for(var k in data){body.append(k,data[k]);}
+  var data={navn:f.navn.value.trim(),telefon:normPhone(f.telefon.value),epost:f.epost.value.trim(),fagfelt:f.fagfelt.value,melding:f.melding.value.trim(),instagram:f.instagram.value.trim(),kilde:'froyd.arcads.no/behandlingsrom',side_url:window.location.href,fbclid:params.get('fbclid')||''};
+  var body=new FormData();for(var k in data){body.append(k,data[k]);}
+  body.append('cv_filnavn',cv.name);body.append('cv',cv,cv.name);
   try{localStorage.setItem('froyd_rom_backup',JSON.stringify(data));}catch(err){}
-  try{if(!(navigator.sendBeacon&&navigator.sendBeacon(MAKE_WEBHOOK_URL,body)))fetch(MAKE_WEBHOOK_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});}
-  catch(err){try{fetch(MAKE_WEBHOOK_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});}catch(e2){}}
-  try{sessionStorage.setItem('froyd_rom_done','1');}catch(err){}
-  setTimeout(function(){window.location.href='takk.html';},400);
+  fetch(MAKE_WEBHOOK_URL,{method:'POST',mode:'no-cors',body:body}).then(function(){
+    try{sessionStorage.setItem('froyd_rom_done','1');}catch(err){}
+    window.location.href='takk.html';
+  }).catch(function(){
+    btn.disabled=false;btn.style.opacity='';
+    fmsg('Noe gikk galt under sendingen. Sjekk nettet og prøv igjen.');
+  });
 });
 </script>
 </body>
